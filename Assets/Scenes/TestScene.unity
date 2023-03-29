@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 1803777349}
   endPoint: {fileID: 677570616}
-  movementPeriod: 1
+  movementSpeed: 0.5
 --- !u!1 &417395401 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1138682725914309126, guid: 6791f40435451cd4c858e0162659886c, type: 3}
