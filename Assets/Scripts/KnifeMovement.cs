@@ -11,7 +11,7 @@ public class KnifeMovement : MonoBehaviour
 
     [SerializeField] private InputAction actions;
 
-    [SerializeField] private float rotationSpeed = 15f;
+    [SerializeField] private float rotationSpeed = 90f;
     [SerializeField] private float movementSpeed = 2f;
 
     private void Start()
@@ -30,17 +30,17 @@ public class KnifeMovement : MonoBehaviour
 
     private void MoveKnifeUp()
     {
-        transform.position = Vector3.Lerp(transform.position, startTransform.position, movementSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, startTransform.position, movementSpeed * Time.deltaTime);
 
         transform.rotation =
-            Quaternion.Lerp(transform.rotation, startTransform.rotation, rotationSpeed * Time.deltaTime);
+            Quaternion.RotateTowards(transform.rotation, startTransform.rotation, rotationSpeed * Time.deltaTime);
     }
 
     private void MoveKnifeDown()
     {
-        transform.position = Vector3.Lerp(transform.position, endTransform.position, movementSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, endTransform.position, movementSpeed * Time.deltaTime);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, endTransform.rotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, endTransform.rotation, rotationSpeed * Time.deltaTime);
     }
 
     private void OnEnable()
