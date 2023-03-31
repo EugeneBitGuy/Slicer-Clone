@@ -7,7 +7,7 @@ public class KnifeSlicer : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("SliceableRoot"))
+        if(other.gameObject.CompareTag("SliceableRoot") && !GameManager.Instance.IsSlicing)
             GameManager.Instance.Slice(other.gameObject, transform);
     }
     
