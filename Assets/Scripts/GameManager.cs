@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BzKovSoft.ObjectSlicer;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -40,10 +41,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Slice(GameObject gameObject)
+    public void Slice(GameObject gameObject, Transform slicer)
     {
         ForbidSliceableMovement();
         _isSlicing = true;
+
+        var Sliceables = gameObject.GetComponentsInChildren<IBzSliceable>();
+
+        Plane plane = new Plane(slicer.up, slicer.position);
+
+        foreach (var sliceable in Sliceables)
+        {
+            if(sliceable == null) continue;
+            
+            sliceable.Slice(plane, null);
+        }
+
+
     }
 
     private void AllowSliceableMovement()
