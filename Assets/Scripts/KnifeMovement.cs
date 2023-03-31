@@ -6,9 +6,12 @@ using UnityEngine.InputSystem;
 
 public class KnifeMovement : MonoBehaviour
 {
+    public float DistanceToGo { get; private set; }
+    public float StartPos { get; private set; }
+
+    
     private const float UpMovementSpeedFactor = 10f;
-    
-    
+
     [SerializeField] private Transform startTransform;
     [SerializeField] private Transform endTransform;
 
@@ -21,6 +24,8 @@ public class KnifeMovement : MonoBehaviour
     {
         transform.position = startTransform.position;
         transform.rotation = startTransform.rotation;
+        DistanceToGo = endTransform.position.y - startTransform.position.y;
+        StartPos = startTransform.position.y;
     }
     
     private void OnEnable()

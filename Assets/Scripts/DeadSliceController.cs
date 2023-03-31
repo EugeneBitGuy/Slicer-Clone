@@ -20,6 +20,8 @@ public class DeadSliceController : MonoBehaviour
 
         rb.isKinematic = false;
 
+        rb.AddForce(Vector3.back * 100f);
+        
         Destroy(gameObject, 1f);
     }
     
