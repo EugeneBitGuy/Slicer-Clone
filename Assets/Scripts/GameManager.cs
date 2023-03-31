@@ -4,6 +4,7 @@ using BzKovSoft.ObjectSlicer.Samples;
 using Deform;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,13 +51,41 @@ public class GameManager : MonoBehaviour
 
     //object can move only if slice event finished (when object reached end) and when user stops to hold button
 
+
+    public void FinishGame()
+    {
+        _isSlicing = false;
+        outSlicesObjects.Clear();
+        deformerTransforms.Clear();
+        _knifeMovement = null;
+        _knifeReachEnd = false;
+        _knifeIsMoving = false;
+        
+        Invoke(nameof(NextLevel), 1f);
+
+
+        
+
+    }
+    void NextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
+            nextSceneIndex = 0;
+
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+
     private void Update()
     {
         if (_isSlicing)
         {
             foreach (var deformerTransform in deformerTransforms)
             {
-                if(deformerTransform == null) continue;
+                if(deformerTransform == null && _knifeMovement == null) continue;
                 
                 var pos = deformerTransform.position;
                 pos.y = Mathf.Min(pos.y, _knifeMovement.transform.position.y);

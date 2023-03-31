@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SliceableObjectMovement : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class SliceableObjectMovement : MonoBehaviour
     [SerializeField] private Transform endPoint;
 
     [SerializeField] private float movementSpeed = 5f;
+
+    [SerializeField] private UnityEvent onObjectReachFinishEvent = null;
     
     private bool _canMove;
 
@@ -47,5 +50,11 @@ public class SliceableObjectMovement : MonoBehaviour
             endPoint.position,
             Time.deltaTime * movementSpeed
         );
+
+        if (transform.position == endPoint.position)
+        {
+            _canMove = false;
+            onObjectReachFinishEvent?.Invoke();
+        }
     }
 }

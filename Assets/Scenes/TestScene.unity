@@ -223,6 +223,21 @@ MonoBehaviour:
   startPoint: {fileID: 1803777349}
   endPoint: {fileID: 677570616}
   movementSpeed: 0.5
+  onObjectReachFinishEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1082764599}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: FinishGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!136 &334903260
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -253,103 +268,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &583063341
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 583063345}
-  - component: {fileID: 583063344}
-  - component: {fileID: 583063343}
-  - component: {fileID: 583063342}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &583063342
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583063341}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &583063343
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583063341}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &583063344
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583063341}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &583063345
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583063341}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.226141, y: 1.3212073, z: -10.641829}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &659228065
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841363021d95f2148ba4fb3e19442f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deformer: {fileID: 6080861373555771600, guid: 68bb0c59345e7c7458b39a9fe27c8ac1, type: 3}
 --- !u!114 &1338872357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,6 +934,7 @@ GameObject:
   - component: {fileID: 86102452}
   - component: {fileID: 86102451}
   - component: {fileID: 86102448}
+  - component: {fileID: 3469287837712668351}
   m_Layer: 0
   m_Name: Cup
   m_TagString: Sliceable
@@ -1036,6 +956,7 @@ GameObject:
   - component: {fileID: 892253772}
   - component: {fileID: 892253771}
   - component: {fileID: 892253768}
+  - component: {fileID: 3469287837726214226}
   m_Layer: 0
   m_Name: Sugar
   m_TagString: Sliceable
@@ -1057,6 +978,7 @@ GameObject:
   - component: {fileID: 1956690223}
   - component: {fileID: 1956690222}
   - component: {fileID: 1956690219}
+  - component: {fileID: 3469287837661398133}
   m_Layer: 0
   m_Name: Liquid
   m_TagString: Sliceable
@@ -1305,6 +1227,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148011323755}
   m_Mesh: {fileID: -9216810965846887918, guid: bd855fbcb29ac1649a6d4a8148d9354e, type: 3}
+--- !u!114 &3469287837661398133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148011323755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85212d1b13358614ca54e74ba56f93ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignOriginalMeshOnDisable: 1
+  updateMode: 0
+  cullingMode: 1
+  normalsRecalculation: 0
+  boundsRecalculation: 0
+  colliderRecalculation: 0
+  meshCollider: {fileID: 0}
+  data:
+    OriginalMesh: {fileID: -9216810965846887918, guid: bd855fbcb29ac1649a6d4a8148d9354e, type: 3}
+    Target:
+      meshFilter: {fileID: 3469287837661398132}
+      skinnedMeshRenderer: {fileID: 0}
+    initialized: 1
+  deformerElements: []
+  customBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.25, y: 0.25, z: 0.25}
 --- !u!33 &3469287837712668350
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1313,6 +1264,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147926500257}
   m_Mesh: {fileID: -4119317738140548247, guid: 64241eee19f4eac4392e5d8289bfc8f0, type: 3}
+--- !u!114 &3469287837712668351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147926500257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85212d1b13358614ca54e74ba56f93ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignOriginalMeshOnDisable: 1
+  updateMode: 0
+  cullingMode: 1
+  normalsRecalculation: 0
+  boundsRecalculation: 0
+  colliderRecalculation: 0
+  meshCollider: {fileID: 0}
+  data:
+    OriginalMesh: {fileID: -4119317738140548247, guid: 64241eee19f4eac4392e5d8289bfc8f0, type: 3}
+    Target:
+      meshFilter: {fileID: 3469287837712668350}
+      skinnedMeshRenderer: {fileID: 0}
+    initialized: 1
+  deformerElements: []
+  customBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.25, y: 0.25, z: 0.25}
 --- !u!33 &3469287837726214225
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1321,6 +1301,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147946511694}
   m_Mesh: {fileID: 3207491984689985154, guid: ac4544d7f1a4a614a84915707d7b53c1, type: 3}
+--- !u!114 &3469287837726214226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147946511694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85212d1b13358614ca54e74ba56f93ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignOriginalMeshOnDisable: 1
+  updateMode: 0
+  cullingMode: 1
+  normalsRecalculation: 0
+  boundsRecalculation: 0
+  colliderRecalculation: 0
+  meshCollider: {fileID: 0}
+  data:
+    OriginalMesh: {fileID: 3207491984689985154, guid: ac4544d7f1a4a614a84915707d7b53c1, type: 3}
+    Target:
+      meshFilter: {fileID: 3469287837726214225}
+      skinnedMeshRenderer: {fileID: 0}
+    initialized: 1
+  deformerElements: []
+  customBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.25, y: 0.25, z: 0.25}
 --- !u!1 &3544519435872685503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1344,7 @@ GameObject:
   - component: {fileID: 4777746471193056276}
   - component: {fileID: 1338872362}
   - component: {fileID: 1338872357}
+  - component: {fileID: 4777746471193056277}
   m_Layer: 0
   m_Name: Plate
   m_TagString: Sliceable
@@ -1370,3 +1380,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4289625, y: 0.16684139, z: 2.4289622}
   m_Center: {x: 0, y: 0.083420694, z: -0.00000017881393}
+--- !u!114 &4777746471193056277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544519435872685503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85212d1b13358614ca54e74ba56f93ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignOriginalMeshOnDisable: 1
+  updateMode: 0
+  cullingMode: 1
+  normalsRecalculation: 0
+  boundsRecalculation: 0
+  colliderRecalculation: 0
+  meshCollider: {fileID: 0}
+  data:
+    OriginalMesh: {fileID: 3736213754101489272, guid: b884673ad8e57a349a1e18fef80416c8, type: 3}
+    Target:
+      meshFilter: {fileID: 996600210301360288}
+      skinnedMeshRenderer: {fileID: 0}
+    initialized: 1
+  deformerElements: []
+  customBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.25, y: 0.25, z: 0.25}
