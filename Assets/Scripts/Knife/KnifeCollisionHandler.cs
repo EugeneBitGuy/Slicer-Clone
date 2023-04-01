@@ -13,12 +13,10 @@ namespace Knife
             if (other.gameObject.CompareTag("SliceableRoot"))
             {
                 OnRootEnter?.Invoke(other.gameObject);
-                Handheld.Vibrate();
             }
             else if (other.gameObject.CompareTag("KnifeEndPoint"))
             {
                 OnEndPointEnter?.Invoke();
-                Handheld.Vibrate();
             }
         }
     }

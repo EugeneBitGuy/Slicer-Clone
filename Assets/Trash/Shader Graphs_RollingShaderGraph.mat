@@ -44,6 +44,6 @@ Material:
     - _PointY: 3.88
     - _Radius: -0.47
     m_Colors:
-    - _Roll_Direction: {r: 0, g: 1, b: 0, a: 0}
-    - _Up_Direction: {r: 1, g: 0, b: 0, a: 0}
+    - _Roll_Direction: {r: 0.48, g: 1, b: 0, a: 0}
+    - _Up_Direction: {r: 1.19, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

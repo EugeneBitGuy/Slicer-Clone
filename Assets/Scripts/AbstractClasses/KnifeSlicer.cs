@@ -66,7 +66,9 @@ namespace AbstractClasses
         {
             if(sliceableRoot == null || !sliceableRoot.CompareTag("SliceableRoot")) 
                 return;
-        
+            
+            Handheld.Vibrate();
+            
             _slicerState = SlicerState.Slicing;
         
             GameManager.Instance.ChangeGameState(GameState.SlicingEvent);
