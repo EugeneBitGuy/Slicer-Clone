@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841363021d95f2148ba4fb3e19442f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startCanvasPanel: {fileID: 0}
+  pauseCanvasPanel: {fileID: 0}
+  finishCanvasPanel: {fileID: 0}

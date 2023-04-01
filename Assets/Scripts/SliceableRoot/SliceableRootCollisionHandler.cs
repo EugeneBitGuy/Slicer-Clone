@@ -1,22 +1,27 @@
 ﻿using System;
 using UnityEngine;
 
-public class SliceableRootCollisionHandler: MonoBehaviour
+namespace SliceableRoot
 {
-    public event Action OnKnifeEnter;
-    public event Action OnKnifeExit;
-    private void OnTriggerEnter(Collider other)
+    public class SliceableRootCollisionHandler : MonoBehaviour
     {
-        if (other.gameObject.CompareTag("Knife"))
+        public event Action OnKnifeEnter;
+        public event Action OnKnifeExit;
+
+        private void OnTriggerEnter(Collider other)
         {
-            OnKnifeEnter?.Invoke();
+            if (other.gameObject.CompareTag("Knife"))
+            {
+                OnKnifeEnter?.Invoke();
+            }
         }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Knife"))
+
+        private void OnTriggerExit(Collider other)
         {
-            OnKnifeExit?.Invoke();
+            if (other.gameObject.CompareTag("Knife"))
+            {
+                OnKnifeExit?.Invoke();
+            }
         }
     }
 }

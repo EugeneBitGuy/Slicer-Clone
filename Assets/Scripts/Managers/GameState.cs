@@ -1,7 +1,10 @@
-﻿public enum GameState
+﻿namespace Managers
 {
-    Started,
-    NotStarted,
-    SlicingEvent,
-    Finished
+    public enum GameState
+    {
+        Started,
+        NotStarted,
+        SlicingEvent,
+        Finished
+    }
 }

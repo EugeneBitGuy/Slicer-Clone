@@ -314,6 +314,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &737233024 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3863687697520999265, guid: 484a27ce90a2b6040a91b05e8013c453, type: 3}
+  m_PrefabInstance: {fileID: 3863687696847983449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,10 +448,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841363021d95f2148ba4fb3e19442f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1221866961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1717089924835909531, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
+  m_PrefabInstance: {fileID: 1717089925214533258}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1615681363 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1717089923600556505, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
   m_PrefabInstance: {fileID: 1717089925214533258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1702297565 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3863687696591217795, guid: 484a27ce90a2b6040a91b05e8013c453, type: 3}
+  m_PrefabInstance: {fileID: 3863687696847983449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1705918598 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3863687696453510684, guid: 484a27ce90a2b6040a91b05e8013c453, type: 3}
+  m_PrefabInstance: {fileID: 3863687696847983449}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &678844942830469348
 PrefabInstance:
@@ -608,8 +628,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2004697656201172784, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1082764599}
+    - target: {fileID: 2720598606179692594, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1082764599}
+    - target: {fileID: 4718111725271404680, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5557382377773483437, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
+      propertyPath: endPosition
+      value: 
+      objectReference: {fileID: 737233024}
+    - target: {fileID: 5557382377773483437, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
+      propertyPath: rootPosition
+      value: 
+      objectReference: {fileID: 1702297565}
+    - target: {fileID: 5557382377773483437, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
+      propertyPath: startPosition
+      value: 
+      objectReference: {fileID: 1705918598}
+    - target: {fileID: 8606939378720156957, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1082764599}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
+--- !u!1 &1717089925214533259 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8558827981979909244, guid: 9b5066c2319a9f04681e937c30de911b, type: 3}
+  m_PrefabInstance: {fileID: 1717089925214533258}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2826096376301900778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -751,6 +804,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5888563503469247974, guid: f804eb64186e3c042b1831b36e1d12ff, type: 3}
+      propertyPath: pauseCanvasPanel
+      value: 
+      objectReference: {fileID: 1717089925214533259}
+    - target: {fileID: 5888563503469247974, guid: f804eb64186e3c042b1831b36e1d12ff, type: 3}
+      propertyPath: startCanvasPanel
+      value: 
+      objectReference: {fileID: 1221866961}
     - target: {fileID: 5888563503469247974, guid: f804eb64186e3c042b1831b36e1d12ff, type: 3}
       propertyPath: finishCanvasPanel
       value: 

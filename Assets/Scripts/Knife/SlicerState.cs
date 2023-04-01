@@ -1,5 +1,8 @@
-﻿public enum SlicerState
+﻿namespace Knife
 {
-    Sleeping,
-    Slicing
+    public enum SlicerState
+    {
+        Sleeping,
+        Slicing
+    }
 }

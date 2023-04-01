@@ -1,18 +1,22 @@
 using System.Linq;
 using UnityEngine;
 
-public class SlicerMaterialProvider : MonoBehaviour
+namespace Knife
 {
-    [SerializeField] private Material[] materialsForSliceable = null;
-
-    public Material FindMaterialByName(string objectName)
+    public class SlicerMaterialProvider : MonoBehaviour
     {
-        if (materialsForSliceable == null) return null;
+        [SerializeField] private Material[] materialsForSliceable = null;
 
-        var material = materialsForSliceable.First(mat => mat.name.Split('_')[0] == objectName.Split('_')[0]);
+        public Material FindMaterialByName(string objectName)
+        {
+            if (materialsForSliceable == null) return null;
 
-        if (material == null) return null;
+            var material = materialsForSliceable
+                .First(mat => mat.name.Split('_')[0] == objectName.Split('_')[0]);
 
-        return material;
+            if (material == null) return null;
+
+            return material;
+        }
     }
 }

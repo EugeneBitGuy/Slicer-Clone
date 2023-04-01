@@ -1,52 +1,58 @@
-﻿using BzKovSoft.ObjectSlicer.Samples;
+﻿using AbstractClasses;
+using BzKovSoft.ObjectSlicer.Samples;
 using UnityEngine;
 
-public sealed class BzkSoftKnifeSlicer : KnifeSlicer
+namespace Knife
 {
-    protected override void StartSlice(GameObject sliceableRoot)
+    public sealed class BzkSoftKnifeSlicer : KnifeSlicer
     {
-        base.StartSlice(sliceableRoot);
-        
-        var sliceableObjects = sliceableRoot.GetComponentsInChildren<ObjectSlicerSample>();
-        
-        foreach (var sliceable in sliceableObjects)
+        protected override void StartSlice(GameObject sliceableRoot)
         {
-            MakeSlice(sliceable);
+            base.StartSlice(sliceableRoot);
+        
+            Transform rootTranform = sliceableRoot.transform;
+
+            foreach (Transform potentialSliceable in rootTranform)
+            {
+                if (!potentialSliceable.gameObject.CompareTag("Sliceable")) continue;
+
+                MakeSlice(potentialSliceable.gameObject.AddComponent<ObjectSlicerSample>());
+            }
         }
-    }
-
-    private void MakeSlice(ObjectSlicerSample sliceable)
-    {
-        if (sliceable == null) return;
-        
-        if(_materialProvider == null) return;
-
-        sliceable.defaultSliceMaterial = _materialProvider.FindMaterialByName(gameObject.name);
-
-        sliceable.Slice(slicerPlane, res =>
+    
+        private void MakeSlice(ObjectSlicerSample sliceable)
         {
-            if (res.sliced)
-            {
-                var slice = res.outObjectPos;
+            if (sliceable == null) return;
+        
+            if(_materialProvider == null) return;
 
-                StartSliceDestruction(slice);
-            }
-            else
-            {
-                bool isOutSideOfPlane = slicerPlane.GetSide(sliceable.GetComponent<Collider>().bounds.min);
+            sliceable.defaultSliceMaterial = _materialProvider.FindMaterialByName(gameObject.name);
 
-                if (isOutSideOfPlane && !sliceable.CompareTag("Sliced"))
+            sliceable.Slice(slicerPlane, res =>
+            {
+                if (res.sliced)
                 {
-                    StartSliceDestruction(sliceable.gameObject);
-                }
-            }
-        });
-    }
+                    var slice = res.outObjectPos;
 
-    protected override void FinishSliceDestruction(GameObject outSlice)
-    {
-        Destroy(outSlice.GetComponent<MeshCollider>());
-        outSlice.AddComponent<BoxCollider>().isTrigger = true;
-        base.FinishSliceDestruction(outSlice);
+                    StartSliceDestruction(slice);
+                }
+                else
+                {
+                    bool isOutSideOfPlane = slicerPlane.GetSide(sliceable.GetComponent<Collider>().bounds.min);
+
+                    if (isOutSideOfPlane && !sliceable.CompareTag("Sliced"))
+                    {
+                        StartSliceDestruction(sliceable.gameObject);
+                    }
+                }
+            });
+        }
+
+        protected override void FinishSliceDestruction(GameObject outSlice)
+        {
+            Destroy(outSlice.GetComponent<MeshCollider>());
+            outSlice.AddComponent<BoxCollider>().isTrigger = true;
+            base.FinishSliceDestruction(outSlice);
+        }
     }
 }

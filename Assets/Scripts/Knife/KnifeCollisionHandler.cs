@@ -1,22 +1,25 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeCollisionHandler : MonoBehaviour
+namespace Knife
 {
-    public event Action<GameObject> OnRootEnter;
-    public event Action OnEndPointEnter; 
-    private void OnTriggerEnter(Collider other)
+    public class KnifeCollisionHandler : MonoBehaviour
     {
-        if (other.gameObject.CompareTag("SliceableRoot"))
+        public event Action<GameObject> OnRootEnter;
+        public event Action OnEndPointEnter;
+
+        private void OnTriggerEnter(Collider other)
         {
-            OnRootEnter?.Invoke(other.gameObject);
-        }
-        else if (other.gameObject.CompareTag("KnifeEndPoint"))
-        {
-            OnEndPointEnter?.Invoke();
+            if (other.gameObject.CompareTag("SliceableRoot"))
+            {
+                OnRootEnter?.Invoke(other.gameObject);
+                Handheld.Vibrate();
+            }
+            else if (other.gameObject.CompareTag("KnifeEndPoint"))
+            {
+                OnEndPointEnter?.Invoke();
+                Handheld.Vibrate();
+            }
         }
     }
-    
 }
