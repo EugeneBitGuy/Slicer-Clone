@@ -8,31 +8,24 @@ namespace Knife
     public sealed class KnifeMovement : BaseMovement
     {
         private const float UpMovementSpeedFactor = 25f;
-
-
+        
+        [Tooltip("Speed of rotation")]
         [SerializeField] private float rotationSpeed = 90f;
-    
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-        }
 
         private void Update()
         {
-            if (GameState == GameState.NotStarted) return;
+            if (GameManager.Instance.GameState == GameState.NotStarted) return;
 
             ProcessMovement();
         }
-        
-
+        /// <summary>
+        /// Computes movement in current frame for Knife
+        /// </summary>
         protected override void ProcessMovement()
         {
-            bool isButtonPressed = InputManager.Instance.KnifeMoving && GameState != GameState.Finished;
+            bool isButtonPressed = InputManager.Instance.KnifeMoving 
+                                   && GameManager.Instance.GameState != GameState.Finished;
+            
             var targetPosition = isButtonPressed ? endTransform.position : startTransform.position;
             var targetRotation = isButtonPressed ? endTransform.rotation : startTransform.rotation;
             var targetMovementSpeed = isButtonPressed ? movementSpeed : UpMovementSpeedFactor * movementSpeed;

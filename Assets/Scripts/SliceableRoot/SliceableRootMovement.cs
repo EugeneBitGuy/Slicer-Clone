@@ -6,32 +6,19 @@ using UnityEngine;
 namespace SliceableRoot
 {
     public sealed class SliceableRootMovement : BaseMovement
-    {
-        private SliceableRootCollisionHandler _collisionHandler;
-
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-        }
-
-        protected override void OnDisable()
-        {
-            base.OnDisable();
-        }
-
-        protected override void Start()
-        {
-            base.Start();
-        }
-
+    { 
         private void Update()
         {
-            if (GameState == GameState.NotStarted || GameState == GameState.SlicingEvent || InputManager.Instance.KnifeMoving) return;
+            if (GameManager.Instance.GameState == GameState.NotStarted ||
+                GameManager.Instance.GameState == GameState.SlicingEvent || 
+                InputManager.Instance.KnifeMoving) return;
 
-                ProcessMovement();
+            ProcessMovement();
         }
 
+        /// <summary>
+        /// Computes movement in current frame for SlicableRoot
+        /// </summary>
         protected override void ProcessMovement()
         {
             transform.position = Vector3.MoveTowards

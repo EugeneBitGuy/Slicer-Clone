@@ -10,6 +10,10 @@ namespace Knife
     {
         private List<GameObject> lowerObject = new List<GameObject>();
 
+        /// <summary>
+        /// Starts slicing due to EzySlice Algorithm
+        /// </summary>
+        /// <param name="sliceableRoot">Root object that contains sliceables</param>
         protected override void StartSlice(GameObject sliceableRoot)
         {
             base.StartSlice(sliceableRoot);
@@ -24,6 +28,11 @@ namespace Knife
             }
         }
 
+        
+        /// <summary>
+        /// Create hulls due to slicer plane and sliceable functions
+        /// </summary>
+        /// <param name="sliceable">Sliceable object</param>
         private void MakeSlice(GameObject sliceable)
         {
             Material sliceMaterial = _materialProvider.FindMaterialByName(sliceable.name);
@@ -54,7 +63,7 @@ namespace Knife
             }
             else
             {
-                bool isOutSideOfPlane = slicerPlane.GetSide(sliceable.GetComponent<Collider>().bounds.min);
+                bool isOutSideOfPlane = _slicerPlane.GetSide(sliceable.GetComponent<Collider>().bounds.min);
 
                 if (isOutSideOfPlane && !sliceable.CompareTag("Sliced"))
                 {
@@ -63,6 +72,10 @@ namespace Knife
             }
         }
 
+        /// <summary>
+        /// Adds important components to hull
+        /// </summary>
+        /// <param name="hull">Slice received from slicing</param>
         private void AddComponentToHull(GameObject hull)
         {
             if (hull == null) return;
@@ -72,12 +85,15 @@ namespace Knife
             hull.AddComponent<Deformable>();
         }
 
+        /// <summary>
+        /// Sets hull position due to original object
+        /// </summary>
+        /// <param name="hull">Slice received from slicing</param>
         private void PlaceHull(GameObject hull, GameObject sliceable)
         {
             hull.transform.parent = sliceable.transform.parent;
             hull.transform.position = sliceable.transform.position;
         }
-
         protected override void OnKnifeReachEnd()
         {
             lowerObject.ForEach(go => { go.tag = "Sliceable"; });

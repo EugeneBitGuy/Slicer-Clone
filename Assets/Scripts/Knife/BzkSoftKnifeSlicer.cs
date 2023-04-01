@@ -8,6 +8,11 @@ namespace Knife
     public sealed class BzkSoftKnifeSlicer : KnifeSlicer
     {
         private List<GameObject> outObjectsNeg = new List<GameObject>();
+        
+        /// <summary>
+        /// Starts slicing due to BzkSoft Algorithm
+        /// </summary>
+        /// <param name="sliceableRoot">Root object that contains sliceables</param>
         protected override void StartSlice(GameObject sliceableRoot)
         {
             base.StartSlice(sliceableRoot);
@@ -27,6 +32,10 @@ namespace Knife
             }
         }
     
+        /// <summary>
+        /// Create hulls due to slicer plane and sliceable functions
+        /// </summary>
+        /// <param name="sliceable">Sliceable object</param>
         private void MakeSlice(ObjectSlicerSample sliceable)
         {
             if (sliceable == null) return;
@@ -39,7 +48,7 @@ namespace Knife
 
             sliceable.defaultSliceMaterial = sliceMaterial;
 
-            sliceable.Slice(slicerPlane, res =>
+            sliceable.Slice(_slicerPlane, res =>
             {
                 if (res.sliced)
                 {
@@ -53,7 +62,7 @@ namespace Knife
                 }
                 else
                 {
-                    bool isOutSideOfPlane = slicerPlane.GetSide(sliceable.GetComponent<Collider>().bounds.min);
+                    bool isOutSideOfPlane = _slicerPlane.GetSide(sliceable.GetComponent<Collider>().bounds.min);
 
                     if (isOutSideOfPlane && !sliceable.CompareTag("Sliced"))
                     {

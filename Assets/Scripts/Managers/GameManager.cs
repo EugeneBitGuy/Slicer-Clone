@@ -7,28 +7,38 @@ namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
+        /// <summary>
+        /// Gets singletone instance of GameManager
+        /// </summary>
         public static GameManager Instance { get; private set; }
-
-        [SerializeField] private GameObject startCanvasPanel;
-        [SerializeField] private GameObject pauseCanvasPanel;
-        [SerializeField] private GameObject finishCanvasPanel;
-
-        private bool isPause = false;
-
+        
+        /// <summary>
+        /// Get current game state
+        /// Set current game state from game manager and handles level finishing
+        /// </summary>
         public GameState GameState
         {
             get => _gameState;
             private set
             {
                 _gameState = value;
-                OnGameStateChange?.Invoke(_gameState);
-
-                GoToRestartPanel();
+                if(_gameState == GameState.Finished)
+                    GoToRestartPanel();
             }
         }
-        
-        public event Action<GameState> OnGameStateChange;
 
+        [Header("UI Panels")]
+        
+        [Tooltip("Link to panel that appears on start of the level")]
+        [SerializeField] private GameObject startCanvasPanel;
+        
+        [Tooltip("Link to panel that appears on pause")]
+        [SerializeField] private GameObject pauseCanvasPanel;
+        
+        [Tooltip("Link to panel that appears on finish of the level")]
+        [SerializeField] private GameObject finishCanvasPanel;
+
+        private bool isPause = false;
         private GameState _gameState;
 
         private void Awake()
@@ -49,6 +59,10 @@ namespace Managers
             GameState = GameState.NotStarted;
         }
         
+        /// <summary>
+        /// Sets game state due to encapsulation
+        /// </summary>
+        /// <param name="newGameState">Value to use as new game state</param>
         public void ChangeGameState(GameState newGameState)
         {
             if (newGameState == GameState.NotStarted) return;
@@ -56,14 +70,22 @@ namespace Managers
             GameState = newGameState;
         }
         
+        /// <summary>
+        /// Handles pause state in game
+        /// </summary>
         public void TogglePause()
         {
             isPause = !isPause;
-            pauseCanvasPanel.SetActive(isPause);
+            
+            if(pauseCanvasPanel != null)
+                pauseCanvasPanel.SetActive(isPause);
 
             Time.timeScale =  isPause ? 0f : 1f;
         }
         
+        /// <summary>
+        /// Starting current level
+        /// </summary>
         public void StartLevel()
         {
             GameState = GameState.Started;
@@ -71,11 +93,17 @@ namespace Managers
             TurnOffStartPanel();
         }
         
+        /// <summary>
+        /// Finish level and loads next one
+        /// </summary>
         public void FinishLevel()
         {
             Invoke(nameof(LoadNextLevel), 1f);
         }
 
+        /// <summary>
+        /// Handles application quit
+        /// </summary>
         public void QuitGame()
         {
 #if UNITY_EDITOR
@@ -85,6 +113,10 @@ namespace Managers
 #endif
         }
         
+        /// <summary>
+        /// Loads next level of the game
+        /// If next level doesn't exist, then loads first level
+        /// </summary>
         void LoadNextLevel()
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -97,11 +129,18 @@ namespace Managers
             SceneManager.LoadScene(nextSceneIndex);
         }
         
+        /// <summary>
+        /// Shows up restart panel
+        /// </summary>
         private void GoToRestartPanel()
         {
-            if (_gameState == GameState.Finished)
+            if (finishCanvasPanel != null)
                 finishCanvasPanel.SetActive(true);
         }
+        
+        /// <summary>
+        /// Hides start panel
+        /// </summary>
         private void TurnOffStartPanel()
         {
             if (startCanvasPanel != null)

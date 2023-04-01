@@ -5,8 +5,14 @@ namespace Managers
 {
     public class InputManager : MonoBehaviour
     {
-        public static InputManager Instance;
+        /// <summary>
+        /// Gets tge singletone instance of InputManager
+        /// </summary>
+        public static InputManager Instance { get; private set; }
 
+        /// <summary>
+        /// Gets the value indicating whether knife should move
+        /// </summary>
         public bool KnifeMoving => _knifeMoving;
 
         private bool _knifeMoving;
@@ -24,6 +30,10 @@ namespace Managers
             }
         }
 
+        /// <summary>
+        /// Reading value of Knife Moving from Input Actions
+        /// </summary>
+        /// <param name="context">Context of reading value of Knife Moving</param>
         public void ReadKnifeMovingInput(InputAction.CallbackContext context)
         {
             _knifeMoving = !context.canceled;

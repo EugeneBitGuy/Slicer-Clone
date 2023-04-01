@@ -10,13 +10,23 @@ namespace AbstractClasses
 {
     public abstract class KnifeSlicer : MonoBehaviour
     {
+        [Header("Deformer options")]
+        
+        [Tooltip("Prefab of deformer that will apply on the slice")]
         [SerializeField] protected BendDeformer deformer = null;
+        
+        [Tooltip("Factor value of deformation")]
         [SerializeField] protected float deformFactor = 2f;
+        
+        [Tooltip("Force value that will be applied to slice after cutout")]
         [SerializeField] protected float destructionSliceForce = 100f;
 
         protected SlicerMaterialProvider _materialProvider;
+        
         protected KnifeCollisionHandler _collisionHandler;
-        protected Plane slicerPlane;
+        
+        protected Plane _slicerPlane;
+        
         protected List<Transform> _deformerTransforms = new List<Transform>();
         protected List<GameObject> _outSlices = new List<GameObject>();
     
@@ -26,7 +36,7 @@ namespace AbstractClasses
         {
             _materialProvider = GetComponent<SlicerMaterialProvider>();
         
-            slicerPlane = new Plane(transform.up, transform.position);
+            _slicerPlane = new Plane(transform.up, transform.position);
         
             _slicerState = SlicerState.Sleeping;
         }
@@ -57,11 +67,19 @@ namespace AbstractClasses
             _collisionHandler.OnEndPointEnter -= OnKnifeReachEnd;
         }
 
+        /// <summary>
+        /// Stops slice because of knife reached destination point
+        /// </summary>
         protected virtual void OnKnifeReachEnd()
         {
             StartCoroutine(nameof(FinishSlice));
         }
     
+        /// <summary>
+        /// Slices all object in child of parameter dut to slicerPLane
+        /// Changes game state to SlicingEvent
+        /// </summary>
+        /// <param name="sliceableRoot">Root object that contains sliceables</param>
         protected virtual void StartSlice(GameObject sliceableRoot)
         {
             if(sliceableRoot == null || !sliceableRoot.CompareTag("SliceableRoot")) 
@@ -73,7 +91,12 @@ namespace AbstractClasses
         
             GameManager.Instance.ChangeGameState(GameState.SlicingEvent);
         }
-    
+        
+        /// <summary>
+        /// Handles behaviour of slicer and slices of root object
+        /// Changes game state to Started
+        /// </summary>
+        /// <returns></returns>
         protected IEnumerator FinishSlice()
         {
             _slicerState = SlicerState.Sleeping;
@@ -90,6 +113,10 @@ namespace AbstractClasses
             GameManager.Instance.ChangeGameState(GameState.Started);
         }
     
+        /// <summary>
+        /// Handles destruction of slice that was on positive side of plane
+        /// </summary>
+        /// <param name="outSlice">Game object that should be destructed</param>
         protected virtual void StartSliceDestruction(GameObject outSlice)
         {
             AddSliceDeformer(outSlice);
@@ -98,6 +125,9 @@ namespace AbstractClasses
             outSlice.tag = "Sliced";
         }
 
+        /// <summary>
+        /// Handles deformation of every positive slice in this slicing event
+        /// </summary>
         protected virtual void ProcessSliceDestruction()
         {
             foreach (Transform deformerTransform in _deformerTransforms)
@@ -109,6 +139,11 @@ namespace AbstractClasses
                 deformerTransform.position = pos;
             }
         }
+        
+        /// <summary>
+        /// Provides final destructions to slice and destroys it
+        /// </summary>
+        /// <param name="outSlice">Game object that should be destructed</param>
     
         protected virtual void FinishSliceDestruction(GameObject outSlice)
         {
@@ -121,6 +156,11 @@ namespace AbstractClasses
             Destroy(outSlice.gameObject, 1f);
         }
     
+        
+        /// <summary>
+        /// Adds deformer to slice
+        /// </summary>
+        /// <param name="slice">Game object that should be destructed</param>
         protected virtual void AddSliceDeformer(GameObject slice)
         {
             var meshFilter = slice.GetComponent<MeshFilter>();
