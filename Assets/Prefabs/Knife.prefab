@@ -210,7 +210,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6958895984610614371}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalRotation: {x: 0, y: 0.70710677, z: -0.70710677, w: 0}
   m_LocalPosition: {x: 6.26, y: 1.589, z: -6.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -250,40 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startTransform: {fileID: 0}
   endTransform: {fileID: 0}
-  movementSpeed: 2
-  actions:
-    m_Name: Actions
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5b1645ab-78c4-4c8f-a235-1dd0505e8d34
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: ab54bced-7cfb-4b45-8d47-2473e3b8bb2e
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Actions
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 5cfffc2c-c55a-4a2c-a92b-10dce658c28c
-      m_Path: <Touchscreen>/Press
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Actions
-      m_Flags: 0
-    - m_Name: 
-      m_Id: db16cfe3-8c0c-49ed-af18-df60f7056648
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Actions
-      m_Flags: 0
-    m_Flags: 0
+  movementSpeed: 1
   rotationSpeed: 90
 --- !u!114 &4792972217330542234
 MonoBehaviour:
@@ -304,7 +271,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6958895984610614371}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d4bba9e31cc48b4b5991f2d003d8422, type: 3}
   m_Name: 
@@ -319,7 +286,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6958895984610614371}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2252514012864b3b98bf2c71e7663dbc, type: 3}
   m_Name: 
