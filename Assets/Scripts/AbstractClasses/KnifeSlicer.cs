@@ -10,6 +10,7 @@ public abstract class KnifeSlicer : MonoBehaviour
     [SerializeField] protected float deformFactor = 2f;
     [SerializeField] protected float destructionSliceForce = 100f;
 
+    protected SlicerMaterialProvider _materialProvider;
     protected KnifeCollisionHandler _collisionHandler;
     protected Plane slicerPlane;
     protected List<Transform> _deformerTransforms = new List<Transform>();
@@ -19,6 +20,8 @@ public abstract class KnifeSlicer : MonoBehaviour
     
     protected virtual void Start()
     {
+        _materialProvider = GetComponent<SlicerMaterialProvider>();
+        
         slicerPlane = new Plane(transform.up, transform.position);
         
         _slicerState = SlicerState.Sleeping;
@@ -99,8 +102,6 @@ public abstract class KnifeSlicer : MonoBehaviour
     
     protected virtual void FinishSliceDestruction(GameObject outSlice)
     {
-        outSlice.AddComponent<BoxCollider>().isTrigger = true;
-
         Rigidbody rb = outSlice.GetComponent<Rigidbody>();
 
         rb.isKinematic = false;

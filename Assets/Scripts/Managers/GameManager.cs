@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     //TODO SINGLETONE
     public static GameManager Instance { get; private set; }
 
+    [SerializeField] private GameObject finishCanvasPanel;
+
     public GameState GameState
     {
         get => _gameState;
@@ -20,7 +22,7 @@ public class GameManager : MonoBehaviour
             OnGameStateChange?.Invoke(_gameState);
             
             if(_gameState == GameState.Finished)
-                FinishLevel();
+                finishCanvasPanel.SetActive(true);
         }
     }
 
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GameState = GameState.Started;
+        GameState = GameState.NotStarted;
     }
     
 
@@ -57,6 +59,11 @@ public class GameManager : MonoBehaviour
     public void FinishLevel()
     {
         Invoke(nameof(LoadNextLevel), 1f);
+    }
+
+    public void StartGame()
+    {
+        GameState = GameState.Started;
     }
     
     void LoadNextLevel()

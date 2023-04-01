@@ -18,6 +18,10 @@ public sealed class BzkSoftKnifeSlicer : KnifeSlicer
     private void MakeSlice(ObjectSlicerSample sliceable)
     {
         if (sliceable == null) return;
+        
+        if(_materialProvider == null) return;
+
+        sliceable.defaultSliceMaterial = _materialProvider.FindMaterialByName(gameObject.name);
 
         sliceable.Slice(slicerPlane, res =>
         {
@@ -42,6 +46,7 @@ public sealed class BzkSoftKnifeSlicer : KnifeSlicer
     protected override void FinishSliceDestruction(GameObject outSlice)
     {
         Destroy(outSlice.GetComponent<MeshCollider>());
+        outSlice.AddComponent<BoxCollider>().isTrigger = true;
         base.FinishSliceDestruction(outSlice);
     }
 }
