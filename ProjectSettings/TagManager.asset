@@ -8,6 +8,7 @@ TagManager:
   - Sliceable
   - SliceableRoot
   - Sliced
+  - KnifeEndPoint
   layers:
   - Default
   - TransparentFX
